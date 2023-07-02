@@ -54,7 +54,7 @@ def filter_data(csv_file_path, y):
 
     matching_ids = y[y['participant_id'].isin(csv_participant_ids)]
 
-    return(matching_ids)
+    return matching_ids
 
 #This function creates variables x (features), y (diagnosis), and the diagnosis key which is used later. 
 def create_feat(feature_directory, n_parcels, matching_ids):
@@ -75,7 +75,7 @@ def create_feat(feature_directory, n_parcels, matching_ids):
 
     y = y.astype('int')
 
-    return(x, y, diagnosis)
+    return x, y, diagnosis
 
 #Takes x, y, and diagnosis key and creates training and testing sets for machine learning.
 def split(x, y, diagnosis):
@@ -84,7 +84,7 @@ def split(x, y, diagnosis):
     y_test = y_test.astype('int')
     y_train = y_train.astype('int')
 
-    return(x_train, y_train, x_test, y_test)
+    return x_train, y_train, x_test, y_test
 
 #Runs cross validation and outputs fold accuracies, classification report, and the SVM algorithm.
 def create_svm(x_train, y_train, x_test, y_test):
@@ -103,7 +103,7 @@ def create_svm(x_train, y_train, x_test, y_test):
     y_pred = SVM.predict(x_test)
     print(classification_report(y_test, y_pred))
 
-    return(SVM)
+    return SVM
 
 #Runs cross validation and outputs fold accuracies, classification report, and the logit algorithm.
 def create_LR( x_train, y_train, x_test, y_test):
@@ -122,7 +122,7 @@ def create_LR( x_train, y_train, x_test, y_test):
     y_pred = logit.predict(x_test)
     print(classification_report(y_test, y_pred))
 
-    return(logit)
+    return logit
 
 #Takes both SVM & logit algorithms and also training & testing sets and outputs an ROC graph.
 def roc_graph(svm, logit, x_train, y_train, x_test, y_test, title):
